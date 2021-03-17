@@ -21,13 +21,22 @@ public class ItemDaoJdbcImpl implements ItemDao {
         List<Integer> list = new ArrayList<>();
         try (Connection connection = connectionManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
-                     "SELECT id FROM ITEM WHERE contained_in = ? and color = ?")) {
+                     "SELECT i.id, i2.id from BOX b\n" +
+                             "join (select * from item) i\n" +
+                             "    on  b.contained_in = i.contained_in\n" +
+                             "join (select * from item) i2\n" +
+                             "    on b.id = i2.contained_in\n" +
+                             "where b.contained_in= ?\n" +
+                             "    and i.color= ?\n" +
+                             "    and i2.color= ?")) {
             preparedStatement.setInt(1, box_id);
             preparedStatement.setString(2, color);
+            preparedStatement.setString(3, color);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     list.add(resultSet.getInt(1));
+                    list.add(resultSet.getInt(2));
                 }
             }
         } catch (SQLException e) {
