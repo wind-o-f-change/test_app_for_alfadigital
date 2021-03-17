@@ -29,7 +29,7 @@ public class TestController {
     }
 
     @PostMapping("test HTTP/1.1")
-    public ResponseEntity<List<Integer>> getIdListByColorAndBookId(TestDTO dto) {
-        return null;
+    public ResponseEntity<List<Integer>> getIdListByColorAndBookId(@RequestBody TestDTO dto) {
+        return ResponseEntity.ok(service.getIdListByColorAndBookId(dto));
     }
 }

@@ -32,7 +32,7 @@ public class ItemService {
     }
 
     public List<Integer> getIdListByColorAndBookId(TestDTO dto) {
-        return repo.getByBoxIdAndColor(dto.getBox_id(), dto.getColor());
+        return repo.getByBoxIdAndColor(dto.getBox(), dto.getColor());
     }
 
 }
