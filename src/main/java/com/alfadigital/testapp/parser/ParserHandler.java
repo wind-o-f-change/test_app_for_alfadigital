@@ -4,7 +4,7 @@ import com.alfadigital.testapp.model.Box;
 import com.alfadigital.testapp.model.Item;
 import com.alfadigital.testapp.service.BoxService;
 import com.alfadigital.testapp.service.ItemService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -12,19 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@Component
 public class ParserHandler extends DefaultHandler {
-    private ItemService itemService;
-    private BoxService boxService;
-
-    @Autowired
-    public void setItemService(ItemService itemService) {
-        this.itemService = itemService;
-    }
-
-    @Autowired
-    public void setBoxService(BoxService boxService) {
-        this.boxService = boxService;
-    }
+    private final ItemService itemService;
+    private final BoxService boxService;
 
     private final String boxName = "Box";
     private final String itemName = "Item";
@@ -32,18 +23,9 @@ public class ParserHandler extends DefaultHandler {
     private List<Box> boxes = new ArrayList<>();
 
 
-    public ParserHandler() {
-    }
-
-    @Override
-    public void endDocument()  {
-        System.out.println("\n");
-        if (boxes.size()>0) boxes.forEach(System.out::println);
-        else System.out.println("Чтение успешно");
-        System.out.println("\n");
-        boxService.getSavedBoxes().forEach(System.out::println);
-        System.out.println("\n");
-        itemService.getSavedItems().forEach(System.out::println);
+    public ParserHandler(ItemService itemService, BoxService boxService) {
+        this.itemService = itemService;
+        this.boxService = boxService;
     }
 
     @Override
@@ -56,13 +38,13 @@ public class ParserHandler extends DefaultHandler {
 
             if (qName.equals(boxName)) {
                 Box box = boxCreate(attributes);
-                box.setBox(parentBox);
+                box.setContained_in(parentBox.getId());
                 saveBox(box);
 
             } else if (qName.equals(itemName)) {
                 Item item = itemCreate(attributes);
-                item.setBox(parentBox);
-                itemService.saveSours(item);
+                item.setContained_in(parentBox.getId());
+                itemService.saveSource(item);
             }
 
         } else {
@@ -72,7 +54,7 @@ public class ParserHandler extends DefaultHandler {
 
             } else if (qName.equals(itemName)) {
                 Item item = itemCreate(attributes);
-                itemService.saveSours(item);
+                itemService.saveSource(item);
             }
         }
     }
@@ -109,6 +91,5 @@ public class ParserHandler extends DefaultHandler {
             int boxSize = boxes.size();
                 boxes.remove(boxSize - 1);
         }
-        System.out.println("end " + qName);
     }
 }

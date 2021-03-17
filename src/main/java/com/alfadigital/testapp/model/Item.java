@@ -1,19 +1,8 @@
 package com.alfadigital.testapp.model;
 
-import javax.persistence.*;
-import java.io.Serializable;
-
-
-@Entity
-@Table(name = "ITEM")
-public class Item implements Serializable {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contained_in", referencedColumnName = "id")
-    private Box box;
+public class Item {
+    private int id;
+    private int contained_in;
     private String color;
 
 
@@ -33,19 +22,23 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public Box getBox() {
-        return box;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setBox(Box box) {
-        this.box = box;
+    public Integer getContained_in() {
+        return contained_in;
+    }
+
+    public void setContained_in(Integer contained_in) {
+        this.contained_in = contained_in;
     }
 
     @Override
     public String toString() {
         return "Item{" +
                 "id=" + id +
-                ", box=" + box +
+                ", contained_in=" + contained_in +
                 ", color='" + color + '\'' +
                 '}';
     }

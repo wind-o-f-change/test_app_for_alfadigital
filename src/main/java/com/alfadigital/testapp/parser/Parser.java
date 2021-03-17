@@ -9,8 +9,13 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
 
-
+@Component
 public class Parser {
+    private final ParserHandler handler;
+
+    public Parser(ParserHandler handler) {
+        this.handler = handler;
+    }
 
     //    Обработку и логгирование ошибок не делал т.к этого нет в задании
 
@@ -18,7 +23,7 @@ public class Parser {
 
         try {
             SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
-            parser.parse(path, new ParserHandler());
+            parser.parse(path, handler);
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }

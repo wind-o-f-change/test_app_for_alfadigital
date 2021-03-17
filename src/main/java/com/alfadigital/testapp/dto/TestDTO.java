@@ -1,15 +1,15 @@
 package com.alfadigital.testapp.dto;
 
 public class TestDTO {
-    private int box;
+    private int box_id;
     private String color;
 
-    public int getBox() {
-        return box;
+    public int getBox_id() {
+        return box_id;
     }
 
-    public void setBox(int box) {
-        this.box = box;
+    public void setBox_id(int box_id) {
+        this.box_id = box_id;
     }
 
     public String getColor() {

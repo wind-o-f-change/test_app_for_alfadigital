@@ -1,9 +1,9 @@
 package com.alfadigital.testapp.dto;
 
 public class SourceDTO {
-    private String url;
+    private String path;
 
-    public String getUrl() {
-        return url;
+    public String getPath() {
+        return path;
     }
 }
