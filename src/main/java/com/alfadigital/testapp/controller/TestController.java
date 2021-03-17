@@ -28,7 +28,7 @@ public class TestController {
         parser.parse(dto.getPath());
     }
 
-    @PostMapping("test HTTP/1.1")
+    @PostMapping("test/")
     public ResponseEntity<List<Integer>> getIdListByColorAndBookId(@RequestBody TestDTO dto) {
         return ResponseEntity.ok(service.getIdListByColorAndBookId(dto));
     }
