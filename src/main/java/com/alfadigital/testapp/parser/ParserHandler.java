@@ -107,7 +107,6 @@ public class ParserHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) {
         if (qName.equals(boxName)){
             int boxSize = boxes.size();
-//            if (boxSize > 0)
                 boxes.remove(boxSize - 1);
         }
         System.out.println("end " + qName);
