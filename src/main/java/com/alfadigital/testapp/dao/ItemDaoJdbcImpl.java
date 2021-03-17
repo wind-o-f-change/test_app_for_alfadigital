@@ -43,7 +43,6 @@ public class ItemDaoJdbcImpl implements ItemDao {
             e.printStackTrace();
         }
 
-        System.out.println(list);
         return list;
     }
 
