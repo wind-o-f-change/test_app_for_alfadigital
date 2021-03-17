@@ -9,7 +9,7 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
 
-@Component
+
 public class Parser {
 //    public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException, XMLStreamException {
 //        parse("input.xml");

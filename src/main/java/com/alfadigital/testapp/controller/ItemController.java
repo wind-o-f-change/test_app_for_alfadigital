@@ -16,16 +16,14 @@ import java.util.List;
 @RestController
 public class ItemController {
     private final ItemService service;
-    private final Parser parser;
 
-    public ItemController(ItemService service, Parser parser) {
+    public ItemController(ItemService service) {
         this.service = service;
-        this.parser = parser;
     }
 
     @PostMapping
     public void getSource(@RequestBody SourceDTO dto) {
-        parser.parse(dto.getUrl());
+        new Parser().parse(dto.getUrl());
     }
 
     @PostMapping("test HTTP/1.1")
