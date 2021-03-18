@@ -1,12 +1,15 @@
 server:
   port: 8080
 spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:/create_tables.sql
   datasource:
     url: jdbc:postgresql://localhost:5432/test_db
     username: postgres
     password: 4444
   jpa:
-    generate-ddl: true
-    show-sql: true
+    generate-ddl: false
+    show-sql: false
     hibernate:
       ddl-auto: none

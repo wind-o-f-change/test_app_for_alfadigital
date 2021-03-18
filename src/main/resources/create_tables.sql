@@ -1,6 +1,3 @@
-drop table if exists ITEM;
-drop table if exists box;
-
 CREATE TABLE BOX
 (ID INTEGER PRIMARY KEY,
  CONTAINED_IN INTEGER
