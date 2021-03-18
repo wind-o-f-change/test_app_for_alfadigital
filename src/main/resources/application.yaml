@@ -1,13 +1,13 @@
-server:
-  port: 8080
-spring:
-  liquibase:
-    enabled: true
-    change-log: classpath:/sql_create_tables.sql
-  datasource:
-    url: jdbc:postgresql://localhost:5432/test_db
-    username: postgres
-    password: 4444
-  jpa:
-    hibernate:
-      ddl-auto: none
+#server:
+#  port: 8080
+#spring:
+#  liquibase:
+#    enabled: true
+#    change-log: classpath:/sql_create_tables.sql
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/test_db
+#    username: postgres
+#    password: 4444
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
